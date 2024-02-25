@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Order System</title>
+</head>
+<body style="background-color: orange;">
+
+    <p style="text-align: left;">
+
+        <a style="font-weight: bold; font-size: large; text-decoration: none; color: chocolate; text-align: left;" href="home.html">&nbsp;&nbsp;&nbsp;&nbsp;Coffee Order <br> &nbsp;&nbsp;&nbsp;&nbsp;System</a>
+
+        <span style="float: right;">
+
+            <a style="font-weight: bold; font-size: larger; text-decoration: none; color: black;" href="orderstatus.html">Order Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+        </span>
+
+    </p>
+
+    <p style="text-align: center; font-weight: bold; font-size: x-large; text-decoration: none; color: black;">
+
+        Select Condiments        
+    
+        <br>
+        <br>
+        <br>
+
+        <button onclick="addMilk()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Milk</button>
+        <button onclick="addMocha()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Mocha</button>
+        <br>
+        <br>
+        <button onclick="addSoy()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Soy</button>
+        <button onclick="addWhip()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Whip</button>
+
+    </p>
+
+
+    <div style="text-align: center; color: darkorange; font-size: medium; font-weight: bold;">
+        <br>
+        My Order
+        <br>
+        <br>
+
+
+        <button onclick="backToBeverage()" id="selectedBeverage" style="font-size: medium; color: black; font-weight: bold;"></button>
+        <br>
+        <button onclick="undoCondiment1()" id="condiment1" style="font-size: medium; color: black; font-weight: bold;">condiment 1</button>
+        <br>
+        <button onclick="undoCondiment2()" id="condiment2" style="font-size: medium; color: black; font-weight: bold;">condiment 2</button>
+        <br>
+        <button onclick="undoCondiment3()" id="condiment3" style="font-size: medium; color: black; font-weight: bold">condiment 3</button>
+        <br>
+        <button onclick="undoCondiment4()"id="condiment4" style="font-size: medium; color: black; font-weight: bold;">condiment 4</button>
+        <br>
+        <br>
+        <button onclick="confirmOrder()"id="getReciept" style="font-size: medium; color: black; font-weight: bold;">Confirm Order</button>
+
+    </div>
+
+    <script>
+        let selectedBeverage = document.getElementById("selectedBeverage");
+        const urlParams = new URLSearchParams(window.location.search)
+        const beverage = urlParams.get("beverage");
+        selectedBeverage.innerText =  beverage;
+
+            function addMilk() {
+                let condiment1 = document.getElementById("condiment1");
+                if (condiment1.innerText == "condiment 1") {
+                    condiment1.innerText = "Milk"
+                } else if (condiment2.innerText == "condiment 2") {
+                    condiment2.innerText = "Milk"
+                } else if (condiment3.innerText == "condiment 3") {
+                    condiment3.innerText = "Milk"
+                } else if (condiment4.innerText == "condiment 4") {
+                    condiment4.innerText = "Milk"
+                }
+            }
+
+            function addMocha() {
+                let condiment1 = document.getElementById("condiment1");
+                if (condiment1.innerText == "condiment 1") {
+                    condiment1.innerText = "Mocha"
+                } else if (condiment2.innerText == "condiment 2") {
+                    condiment2.innerText = "Mocha"
+                } else if (condiment3.innerText == "condiment 3") {
+                    condiment3.innerText = "Mocha"
+                } else if (condiment4.innerText == "condiment 4") {
+                    condiment4.innerText = "Mocha"
+                }
+            }
+
+            function addSoy() {
+                let condiment1 = document.getElementById("condiment1");
+                if (condiment1.innerText == "condiment 1") {
+                    condiment1.innerText = "Soy"
+                } else if (condiment2.innerText == "condiment 2") {
+                    condiment2.innerText = "Soy"
+                } else if (condiment3.innerText == "condiment 3") {
+                    condiment3.innerText = "Soy"
+                } else if (condiment4.innerText == "condiment 4") {
+                    condiment4.innerText = "Soy"
+                }
+            }
+
+            function addWhip() {
+                let condiment1 = document.getElementById("condiment1");
+                if (condiment1.innerText == "condiment 1") {
+                    condiment1.innerText = "Whip"
+                } else if (condiment2.innerText == "condiment 2") {
+                    condiment2.innerText = "Whip"
+                } else if (condiment3.innerText == "condiment 3") {
+                    condiment3.innerText = "Whip"
+                } else if (condiment4.innerText == "condiment 4") {
+                    condiment4.innerText = "Whip"
+                }
+            }
+
+            function backToBeverage() {
+                location.href = "beverage.html";
+            }
+
+            function undoCondiment1() {
+                let condiment1 = document.getElementById("condiment1");
+                condiment1.innerText = "condiment 1";
+            }
+
+            function undoCondiment2() {
+                let condiment2 = document.getElementById("condiment2");
+                condiment2.innerText = "condiment 2";
+            }
+
+            function undoCondiment3() {
+                let condiment3 = document.getElementById("condiment3");
+                condiment3.innerText = "condiment 3";
+            }
+
+            function undoCondiment4() {
+                let condiment4 = document.getElementById("condiment4");
+                condiment4.innerText = "condiment 4";
+            }
+
+            function confirmOrder() {
+                location.href = "orderconfirmation.html";
+            }
+
+
+
+
+        </script>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

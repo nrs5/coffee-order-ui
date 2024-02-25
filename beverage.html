@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Order System</title>
+</head>
+<body style="background-color: orange;">
+
+    <p style="text-align: left;">
+
+        <a style="font-weight: bold; font-size: large; text-decoration: none; color: chocolate; text-align: left;" href="home.html">&nbsp;&nbsp;&nbsp;&nbsp;Coffee Order <br> &nbsp;&nbsp;&nbsp;&nbsp;System</a>
+
+        <span style="float: right;">
+
+            <a style="font-weight: bold; font-size: larger; text-decoration: none; color: black;" href="orderstatus.html">Order Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+        </span>
+
+    </p>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <p style="text-align: center; font-weight: bold; font-size: x-large; text-decoration: none; color: black;">
+    
+        Select the Beverage        
+    
+        <br>
+        <br>
+
+        <button onclick="selectDarkRoast()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Dark Roast</button>
+        <button onclick="selectEspresso()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;" >Espresso</button>
+        <br>
+        <br>
+        <button onclick="selectHouseBlend()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">House Blend</button>
+        <button onclick="selectDecaf()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Decaf</button>
+
+        <br>
+        <br>
+        <br>
+
+    </p>
+
+    <script>
+        function goToTheNextPage() {
+            let beverage = document.getElementById("beverage").value;
+            location.href = "condiments.html?beverage=" + beverage;
+        }
+
+        function selectDarkRoast() {
+            location.href = "condiments.html?beverage=Dark Roast";
+        }
+
+        function selectEspresso() {
+            location.href = "condiments.html?beverage=Espresso";
+        }
+
+        function selectHouseBlend() {
+            location.href = "condiments.html?beverage=House Blend";
+        }
+
+        function selectDecaf() {
+            location.href = "condiments.html?beverage=Decaf";
+        }
+
+
+
+
+
+
+    </script>
+
+    
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
