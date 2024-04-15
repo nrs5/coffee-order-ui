@@ -3,92 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Order System</title>
+    <title>Start Your Order Page</title>
+    <style>
+        body {
+            background-color: beige;
+            margin: 0;
+            padding: 0;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container button {
+            background-color: #D2B48C; /* Light brown color */
+            color: black;
+            height: 200px;
+            width: 400px;
+            cursor: pointer;
+            font-size: 40px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-right: 200px; /* Adjust as needed */
+            margin-top: 20px; 
+        }
+        .coffee-order-system {
+            color: #D2691E;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+        }
+        .coffee-order-system a {
+            color: #D2691E;
+            text-decoration: none;
+
+        }
+        .order-status {
+            color: black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-decoration: none;
+            
+        }
+        .order-status a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+        .order-label {
+            text-align: center;
+            position: absolute; /* Set position to absolute */
+            top: 150px; /* Adjust top position */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+            
+        }
+
+    </style>
 </head>
-<body style="background-color: orange;">
-
-    <p style="text-align: left;">
-
-        <a style="font-weight: bold; font-size: large; text-decoration: none; color: chocolate; text-align: left;" href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;Coffee Order <br> &nbsp;&nbsp;&nbsp;&nbsp;System</a>
-
-        <span style="float: right;">
-
-            <a style="font-weight: bold; font-size: larger; text-decoration: none; color: black;" href="orderstatus.html">Order Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-
-        </span>
-
-    </p>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <p style="text-align: center; font-weight: bold; font-size: x-large; text-decoration: none; color: black;">
-    
-        Select the Beverage        
-    
-        <br>
-        <br>
-
-        <button onclick="selectDarkRoast()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Dark Roast</button>
-        <button onclick="selectEspresso()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;" >Espresso</button>
-        <br>
-        <br>
-        <button onclick="selectHouseBlend()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">House Blend</button>
-        <button onclick="selectDecaf()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Decaf</button>
-
-        <br>
-        <br>
-        <br>
-
-    </p>
-
-    <script>
-        function goToTheNextPage() {
-            let beverage = document.getElementById("beverage").value;
-            location.href = "condiments.html?beverage=" + beverage;
-        }
-
-        function selectDarkRoast() {
-            location.href = "condiments.html?beverage=Dark Roast";
-        }
-
-        function selectEspresso() {
-            location.href = "condiments.html?beverage=Espresso";
-        }
-
-        function selectHouseBlend() {
-            location.href = "condiments.html?beverage=House Blend";
-        }
-
-        function selectDecaf() {
-            location.href = "condiments.html?beverage=Decaf";
-        }
-
-
-
-
-
-
-    </script>
-
-    
-
-
-
+<body>
+    <div class = "coffee-order-system">
+        <a href="index.html">
+            <h1 style="margin-top: 20px;">Coffee Order</h1>
+            <h2 style="margin-top: -20px;">System</h2>
+        </a>
+    </div>
+    <div class = "order-status">
+        <a href="status.html">
+            <h1 style="margin-top: 20px;">Order Status</h1>
+        </a>
+        <a href="login.html">
+            <h1>Login</h1>
+        </a>
+    </div>
+   <div class ="order-label">
+        <h1 style="margin-top: 20px;">Select the beverage</h1>
+    </div>
+    <div class="button-container" style="margin-top: 300px; margin-left: 200px;">
+        <a href="condiments.html?beverage=Dark%20Roast"><button>Dark Roast</button></a>
+        <a href="condiments.html?beverage=Espresso"><button>Espresso</button></a>
+    </div>
+    <div class="button-container" style="margin-bottom: 200px; margin-left: 200px;">
+        <a href="condiments.html?beverage=House%20Blend"><button>House Blend</button></a>
+        <a href="condiments.html?beverage=Decaf"><button>Decaf</button></a>
+    </div>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
 </html>

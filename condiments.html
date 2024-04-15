@@ -3,166 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Order System</title>
+    <title>Condiments Page</title>
+    <style>
+        body {
+            background-color: beige;
+            margin: 0;
+            padding: 0;
+        }
+        .button-container {
+            text-align: center;
+            float: center;
+        }
+        .button-container button {
+            background-color: #D2B48C; /* Light brown color */
+            color: black;
+            height: 150px;
+            width: 200px;
+            cursor: pointer;
+            font-size: 30px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .coffee-order-system {
+            color: #D2691E;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+        }
+        .coffee-order-system a {
+            color: #D2691E;
+            text-decoration: none;
+
+        }
+        .order-status {
+            color: black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-decoration: none;
+            
+        }
+        .order-status a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+        .order-label {
+            text-align: center;
+            position: absolute; /* Set position to absolute */
+            top: 150px; /* Adjust top position */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+        }
+        .cart{
+            width: 200px;
+            height: 500px;
+            border: 5px solid black;
+            padding: 10px;
+            margin: 10px;
+            top: 200px;
+            right: 10px;
+            position: absolute;
+        }
+        .cart-content {
+            text-align: center;
+            font-weight: bold;
+        }
+        .cart-buttons {
+            text-align: center;    
+        }
+        .cart-buttons button {
+            background-color: #E5C100; /* Light brown color */
+            color: black;
+            height: 30px;
+            width: 200px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+    </style>
 </head>
-<body style="background-color: orange;">
-
-    <p style="text-align: left;">
-
-        <a style="font-weight: bold; font-size: large; text-decoration: none; color: chocolate; text-align: left;" href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;Coffee Order <br> &nbsp;&nbsp;&nbsp;&nbsp;System</a>
-
-        <span style="float: right;">
-
-            <a style="font-weight: bold; font-size: larger; text-decoration: none; color: black;" href="orderstatus.html">Order Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-
-        </span>
-
-    </p>
-
-    <p style="text-align: center; font-weight: bold; font-size: x-large; text-decoration: none; color: black;">
-
-        Select Condiments        
-    
-        <br>
-        <br>
-        <br>
-
-        <button onclick="addMilk()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Milk</button>
-        <button onclick="addMocha()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Mocha</button>
-        <br>
-        <br>
-        <button onclick="addSoy()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Soy</button>
-        <button onclick="addWhip()" style="font-weight: bold; font-size: larger; text-decoration: none; color: black;">Whip</button>
-
-    </p>
-
-
-    <div style="text-align: center; color: darkorange; font-size: medium; font-weight: bold;">
-        <br>
-        My Order
-        <br>
-        <br>
-
-
-        <button onclick="backToBeverage()" id="selectedBeverage" style="font-size: medium; color: black; font-weight: bold;"></button>
-        <br>
-        <button onclick="undoCondiment1()" id="condiment1" style="font-size: medium; color: black; font-weight: bold;">condiment 1</button>
-        <br>
-        <button onclick="undoCondiment2()" id="condiment2" style="font-size: medium; color: black; font-weight: bold;">condiment 2</button>
-        <br>
-        <button onclick="undoCondiment3()" id="condiment3" style="font-size: medium; color: black; font-weight: bold">condiment 3</button>
-        <br>
-        <button onclick="undoCondiment4()"id="condiment4" style="font-size: medium; color: black; font-weight: bold;">condiment 4</button>
-        <br>
-        <br>
-        <button onclick="confirmOrder()"id="getReciept" style="font-size: medium; color: black; font-weight: bold;">Confirm Order</button>
-
+<body>
+    <div class = "coffee-order-system">
+        <a href="index.html">
+            <h1 style="margin-top: 20px;">Coffee Order</h1>
+            <h2 style="margin-top: -20px;">System</h2>
+        </a>
+        
     </div>
-
+    <div class = "order-status">
+        <a href="status.html">
+            <h1 style="margin-top: 20px;">Order Status</h1>
+        </a>
+        <a href="login.html">
+            <h1>Login</h1>
+        </a>
+    </div>
+   <div class ="order-label">
+        <h1 style="margin-top: 20px;">Add the condiments</h1>
+    </div>
+    <div class="button-container" style="margin-top: 300px;">
+        <button style="margin-right: 20px;" onclick="addTheCondiment(this.textContent)">Milk</button></a>
+        <button onclick="addTheCondiment(this.textContent)">Mocha</button>
+    </div>
+    <div class="button-container" style="margin-top: 20px;">
+        <button style="margin-right: 20px;" onclick="addTheCondiment(this.textContent)">Soy</button>
+        <button onclick="addTheCondiment(this.textContent)">Whip</button>
+    </div>
+    <div class="cart">
+        <div class="cart-content" style="font-size: 30px; color: orange;">My Order</div>
+        <div class="cart-buttons" style="margin-top: 30px;">
+            <a href="beverage.html"><button id="selectedBeverageBtn">Selected Beverage</button></a>
+            <button id="condiment1Btn" onclick="removeTheCondiment()" style="margin-top:10px;">condiment 1</button>
+            <button id="condiment2Btn" onclick="removeTheCondiment()" style="margin-top:10px;">condiment 2</button>
+            <button id="condiment3Btn" onclick="removeTheCondiment()" style="margin-top:10px;">condiment 3</button>
+            <button id="condiment4Btn" onclick="removeTheCondiment()" style="margin-top:10px;">condiment 4</button>
+            <a id="receiptLink" href="receipt.html"><button onclick="addTheOrder()" style="margin-top: 220px;">Confirm Order</button></a>
+        </div>
+    </div>
+    
     <script>
-        let selectedBeverage = document.getElementById("selectedBeverage");
-        const urlParams = new URLSearchParams(window.location.search)
-        const beverage = urlParams.get("beverage");
-        selectedBeverage.innerText =  beverage;
+        let condimentArray = [];
+        async function updateReceiptLink() {
+            // Get the text content of condiment buttons
+            const condiment1 = document.getElementById('condiment1Btn').innerText;
+            const condiment2 = document.getElementById('condiment2Btn').innerText;
+            const condiment3 = document.getElementById('condiment3Btn').innerText;
+            const condiment4 = document.getElementById('condiment4Btn').innerText;
+            const condimentArray = [condiment1, condiment2, condiment3, condiment4];
 
-            function addMilk() {
-                let condiment1 = document.getElementById("condiment1");
-                if (condiment1.innerText == "condiment 1") {
-                    condiment1.innerText = "Milk"
-                } else if (condiment2.innerText == "condiment 2") {
-                    condiment2.innerText = "Milk"
-                } else if (condiment3.innerText == "condiment 3") {
-                    condiment3.innerText = "Milk"
-                } else if (condiment4.innerText == "condiment 4") {
-                    condiment4.innerText = "Milk"
-                }
+            // Get the selected beverage from the button
+            const selectedBeverage = document.getElementById('selectedBeverageBtn').innerText;
+            localStorage.setItem('selectedBeverage', selectedBeverage);
+
+             // Construct the URL for receipt.html with query parameters for selected beverage
+            let receiptLinkHref = `receipt.html?beverage=${selectedBeverage}`;
+
+            // Add condiments to the URL if they are selected
+            if (condiment1 !== "condiment 1") {
+                receiptLinkHref += `&condiment1=${condiment1}`;
+            }
+            if (condiment2 !== "condiment 2") {
+                receiptLinkHref += `&condiment2=${condiment2}`;
+            }
+            if (condiment3 !== "condiment 3") {
+                receiptLinkHref += `&condiment3=${condiment3}`;
+            }
+            if (condiment4 !== "condiment 4") {
+                receiptLinkHref += `&condiment4=${condiment4}`;
             }
 
-            function addMocha() {
-                let condiment1 = document.getElementById("condiment1");
-                if (condiment1.innerText == "condiment 1") {
-                    condiment1.innerText = "Mocha"
-                } else if (condiment2.innerText == "condiment 2") {
-                    condiment2.innerText = "Mocha"
-                } else if (condiment3.innerText == "condiment 3") {
-                    condiment3.innerText = "Mocha"
-                } else if (condiment4.innerText == "condiment 4") {
-                    condiment4.innerText = "Mocha"
-                }
-            }
+            // Set the href attribute of the receipt link
+            const receiptLink = document.getElementById('receiptLink');
+            receiptLink.href = receiptLinkHref
+}
+            let count = 0;
+            // Get the selected beverage from the query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const beverage = urlParams.get('beverage');
 
-            function addSoy() {
-                let condiment1 = document.getElementById("condiment1");
-                if (condiment1.innerText == "condiment 1") {
-                    condiment1.innerText = "Soy"
-                } else if (condiment2.innerText == "condiment 2") {
-                    condiment2.innerText = "Soy"
-                } else if (condiment3.innerText == "condiment 3") {
-                    condiment3.innerText = "Soy"
-                } else if (condiment4.innerText == "condiment 4") {
-                    condiment4.innerText = "Soy"
-                }
-            }
+            // Update the button text with the selected beverage
+            if (beverage) {
+            const selectedBeverageBtn = document.getElementById('selectedBeverageBtn');
+            selectedBeverageBtn.innerText = beverage;
+        }
 
-            function addWhip() {
-                let condiment1 = document.getElementById("condiment1");
-                if (condiment1.innerText == "condiment 1") {
-                    condiment1.innerText = "Whip"
-                } else if (condiment2.innerText == "condiment 2") {
-                    condiment2.innerText = "Whip"
-                } else if (condiment3.innerText == "condiment 3") {
-                    condiment3.innerText = "Whip"
-                } else if (condiment4.innerText == "condiment 4") {
-                    condiment4.innerText = "Whip"
-                }
-            }
+        async function addTheCondiment(condiment){
+            count = count + 1;
+            if(count == 1){
+                condiment1Btn.innerText = condiment;
+                condimentArray.push(condiment);
+            }else if(count == 2){
+                condiment2Btn.innerText = condiment;
+                condimentArray.push(condiment);
+            }else if(count == 3){
+                condiment3Btn.innerText = condiment;
+                condimentArray.push(condiment);
+            }else if(count == 4){
+                condiment4Btn.innerText = condiment;
+                condimentArray.push(condiment);
+            }      
+            updateReceiptLink();      
+        }
 
-            function backToBeverage() {
-                location.href = "beverage.html";
-            }
-
-            function undoCondiment1() {
-                let condiment1 = document.getElementById("condiment1");
-                condiment1.innerText = "condiment 1";
-            }
-
-            function undoCondiment2() {
-                let condiment2 = document.getElementById("condiment2");
-                condiment2.innerText = "condiment 2";
-            }
-
-            function undoCondiment3() {
-                let condiment3 = document.getElementById("condiment3");
-                condiment3.innerText = "condiment 3";
-            }
-
-            function undoCondiment4() {
-                let condiment4 = document.getElementById("condiment4");
-                condiment4.innerText = "condiment 4";
-            }
-
-            function confirmOrder() {
-                location.href = "orderconfirmation.html";
-            }
+        async function removeTheCondiment(){
+            if(count == 1){
+                count = count - 1;
+                condiment1Btn.innerText = "condiment 1";
+                condimentArray.pop();
+            }else if(count == 2){
+                count = count - 1;
+                condiment2Btn.innerText = "condiment 2";
+                condimentArray.pop();
+            }else if(count == 3){
+                count = count - 1;
+                condiment3Btn.innerText = "condiment 3";
+                condimentArray.pop();
+            }else if(count == 4){
+                count = count - 1;
+                condiment4Btn.innerText = "condiment 4";
+                condimentArray.pop();
+            }      
+            updateReceiptLink();      
+        }
 
 
-
-
-        </script>
-
-
-
+    </script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
 </html>

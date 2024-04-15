@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Order Page</title>
+    <style>
+        body {
+            background-color: beige;
+            margin: 0;
+            padding: 0;
+        }
+        .coffee-order-system {
+            color: #D2691E;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+        }
+        .coffee-order-system a {
+            color: #D2691E;
+            text-decoration: none;
+
+        }
+        .order-status {
+            color: black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-decoration: none;
+        }
+        .order-status a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+    </style>
+</head>
+<body onload="orderIdGenerator(); displayOrderMessage();">
+    <div class = "coffee-order-system">
+        <a href="index.html">
+            <h1 style="margin-top: 20px;">Coffee Order</h1>
+            <h2 style="margin-top: -20px;">System</h2>
+        </a>
+    </div>
+    <div class = "order-status">
+        <a href="status.html">
+            <h1 style="margin-top: 20px;">Order Status</h1>
+        </a>
+        <a href="login.html">
+            <h1>Login</h1>
+        </a>
+    </div>
+    <div>
+        <h1 style="text-align: center; margin-top: 250px; font-weight: bold;">Order Placed:</h1>
+        <h2 id="order-id" style="text-align: center; margin-top: 20px; font-weight: bold; font-size: 30px;">Order id: </h2>
+        <h3 id="order-message" style="text-align: center; margin-top: 20px; font-weight: bold; font-size: 30px;"></h3>
+        <h4 id="price-message" style="text-align: center; margin-top: 20px; font-weight: bold; font-size: 30px;">Total: </h4>
+
+    </div>
+    <script>
+        let orderId = localStorage.getItem('orderId');
+
+        async function orderIdGenerator(){
+            let orderIdElem = document.getElementById('order-id');
+            if (!orderId){
+                orderId = 1;
+            }
+            orderIdElem.textContent = "Order id: " + orderId;
+            localStorage.setItem('orderId', orderId)
+            orderId++;
+            localStorage.setItem('orderId', orderId);
+        }
+        async function calculateTotalPrice(beverage, condiments) {
+            let milkCount = 0;
+            let soyCount = 0;
+            let whipCount = 0;
+            let mochaCount = 0;
+            let totalPrice = 0;
+            if(beverage === "Dark Roast"){
+                totalPrice += 1.78;
+            }else if(beverage === "House Blend"){
+                totalPrice += 1.65;
+            }else if(beverage === "Espresso"){
+                totalPrice += 1.34
+            }else if(beverage === "Decaf"){
+                totalPrice += 1.28;
+            }
+
+            for (let i = 0; i < condiments.length; i++) {
+                switch (condiments[i]) {
+                    case 'Milk':
+                        milkCount++;
+                        break;
+                    case 'Soy':
+                        soyCount++;
+                        break;
+                    case 'Whip':
+                        whipCount++;
+                        break;
+                    case 'Mocha':
+                        mochaCount++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //count array to iterate over
+            const condimentCounts = {
+                'Milk': milkCount,
+                'Soy': soyCount,
+                'Whip': whipCount,
+                'Mocha': mochaCount
+            };
+            if(milkCount != 0){
+                totalPrice += milkCount * .20;
+            }
+            if(soyCount != 0){
+                totalPrice += soyCount * .27;
+            }
+            if(whipCount != 0){
+                totalPrice += whipCount * .25;
+            }
+            if(mochaCount != 0){
+                totalPrice += mochaCount * .40;
+            }
+            
+
+            // Format total price to two decimal places
+            totalPrice = totalPrice.toFixed(2);
+
+            // Set the total price in the priceMessageElem
+            const priceMessageElem = document.getElementById('price-message');
+            priceMessageElem.textContent = `Total: $${totalPrice}`;
+        }
+
+        async function sendOrderToBackend(beverage, condiments, id) {
+            const orderData = {
+                beverage: beverage,
+                condiments: condiments,
+                id: id
+            };
+
+
+            try {
+                const response = await fetch('https://coffee-order-latest-cqz8.onrender.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                });
+                
+                if (response.ok) {
+                    const receipt = await response.json();
+                    // Process receipt if needed
+                } else {
+                    // Handle error response
+                    console.error('Failed to send order to backend:', response.statusText);
+                }
+            } catch (error) {
+                // Handle network error
+                console.error('Failed to send order to backend:', error.message);
+            }
+        }
+
+        async function displayOrderMessage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const beverage = urlParams.get('beverage');
+            const condiment1 = urlParams.get('condiment1');
+            const condiment2 = urlParams.get('condiment2');
+            const condiment3 = urlParams.get('condiment3');
+            const condiment4 = urlParams.get('condiment4');
+            const condimentArray = [condiment1, condiment2, condiment3, condiment4]
+            //creating order message
+            let orderMessage = "";
+            if (beverage) {
+                orderMessage += beverage;
+            }
+            if (!condiment1) {
+                // If condiment1 is null or empty, assume no condiments are selected and retrieve the beverage from local storage
+                const beverage = localStorage.getItem('selectedBeverage');
+                if (beverage) {
+                    const orderMessageElem = document.getElementById('order-message');
+                    orderMessageElem.textContent = beverage;
+                    // Calculate total price based on beverage only!
+                    calculateTotalPrice(beverage, []);
+                    return;
+                }
+            }
+            
+
+            //individually gather count of numbers
+            let milkCount = 0;
+            let soyCount = 0;
+            let whipCount = 0;
+            let mochaCount = 0;
+            //looping through array to get count
+            for (let i = 0; i < condimentArray.length; i++) {
+                switch (condimentArray[i]) {
+                    case 'Milk':
+                        milkCount++;
+                        break;
+                    case 'Soy':
+                        soyCount++;
+                        break;
+                    case 'Whip':
+                        whipCount++;
+                        break;
+                    case 'Mocha':
+                        mochaCount++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //count array to iterate over
+            const condimentCounts = {
+                'Milk': milkCount,
+                'Soy': soyCount,
+                'Whip': whipCount,
+                'Mocha': mochaCount
+            };
+
+            //4 of same condiment
+            for (const condiment in condimentCounts) {
+                if (condimentCounts[condiment] === 4) {
+                    orderMessage += ` and quad ${condiment.toLowerCase()}!`;
+                }
+            }
+            //3 of condiment and potentially other condiment
+            for(const condiment in condimentCounts){
+                if(condimentCounts[condiment] === 3){
+                    //check if there is another one
+                    for(const condiment in condimentCounts){
+                        if (condimentCounts[condiment] === 1){
+                            orderMessage += ` with ${condiment.toLowerCase()}`;
+                        }
+                    }
+                    orderMessage += ` and triple ${condiment.toLowerCase()}!`;
+                    
+                }
+            }
+            //2 of condiment and potentially 1 or 2 other condiments
+            for (const condiment in condimentCounts) {
+                if (condimentCounts[condiment] === 2) {
+                    let otherCondiment = '';
+                    let otherCondimentCount = 0;
+                    for (const other in condimentCounts) {
+                        if (other !== condiment && condimentCounts[other] === 1) {
+                            otherCondiment = other;
+                            otherCondimentCount++;
+                        }
+                    }
+                    if (otherCondiment && otherCondimentCount === 1) {
+                        orderMessage += ` with ${otherCondiment.toLowerCase()} and double ${condiment.toLowerCase()}!`;
+                    } else {
+                        orderMessage += ` and double ${condiment.toLowerCase()}!`;
+                    }
+                }
+            }
+            //1 of a condiment
+            // Variable to store the number of condiments found
+            let condimentCount = 0;
+            for (const condiment in condimentCounts) {
+                
+                // If the count of the condiment is 1
+                if (condimentCounts[condiment] === 1) {
+                 // If it's the first condiment found, start the message with "with"
+                 if (condimentCount === 0) {
+                        orderMessage += ` with ${condiment.toLowerCase()}`;
+                    } else {
+                        // use and if its not first
+                        orderMessage += ` and ${condiment.toLowerCase()}`;
+                    }
+                    condimentCount++;
+                }
+            }
+            if(milkCount === 0 && soyCount === 0 && whipCount === 0 && mochaCount === 0){
+                orderMessage += beverage;
+            }
+
+            const orderMessageElem = document.getElementById('order-message');
+            orderMessageElem.textContent = orderMessage;
+            calculateTotalPrice(beverage, condimentArray);
+            sendOrderToBackend(beverage, condimentArray, orderId);
+
+        }
+        
+    </script>
+    
+</body>
+</html>
