@@ -1,5 +1,5 @@
 
-let host = "https://coffee-order-latest-cqz8.onrender.com"
+let host = "https://coffee-order-hw9-latest.onrender.com/"
 async function signup() {
     let email = document.getElementById("email").value;
     let username = document.getElementById("username").value;
